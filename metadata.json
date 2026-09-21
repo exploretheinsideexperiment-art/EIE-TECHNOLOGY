@@ -1,0 +1,6 @@
+{
+  "name": "EIE-Technology",
+  "description": "Explore the Inside Experiment-Technology (Created by Vipul) - Production-ready payment and protected digital-link delivery platform with one-time token security.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

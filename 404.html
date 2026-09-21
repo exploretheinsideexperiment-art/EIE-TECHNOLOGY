@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" class="dark" style="background-color: #090d16; color: #e1e7f5;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>EIE-Technology | Explore the Inside Experiment-Technology (Created by Vipul)</title>
+    <meta name="description" content="Explore the Inside Experiment-Technology (Created by Vipul) - Production-ready payment and protected digital-link delivery platform with one-time token security." />
+    <meta property="og:title" content="EIE-Technology | Explore the Inside Experiment-Technology" />
+    <meta property="og:description" content="Explore the Inside Experiment-Technology (Created by Vipul) - Production-ready payment and protected digital-link delivery platform with one-time token security." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Prevent Stale HTML Caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- PWA & Mobile Web App Meta -->
+    <meta name="theme-color" content="#090d16" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="EIE-Tech" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon-BMC4DQpo.png" />
+    <link rel="icon" type="image/svg+xml" href="./assets/icon-CbCejJzc.svg" />
+    <link rel="alternate icon" href="./assets/favicon-BZFB0vks.ico" />
+    <link rel="manifest" href="./assets/manifest-DXHtpyqz.webmanifest" />
+
+    <style>html,body{color:#e1e7f5;width:100%;min-height:100vh;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background-color:#090d16!important}.eie-preloader{background-color:#090d16;flex-direction:column;justify-content:center;align-items:center;gap:16px;width:100vw;height:100vh;display:flex}.eie-spin-ring{border:3px solid #00e59933;border-top-color:#00e599;border-radius:50%;width:44px;height:44px;animation:.8s linear infinite eie-spin}@keyframes eie-spin{to{transform:rotate(360deg)}}</style>
+    <script type="module" crossorigin src="./assets/index-DGwnSTbW.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DWfYOrKN.css">
+  <link rel="manifest" href="./manifest.webmanifest"></head>
+  <body class="bg-[#090d16] text-[#e1e7f5] antialiased selection:bg-[#00e599]/30 selection:text-white" style="background-color: #090d16; color: #e1e7f5;">
+    <div id="root">
+      <div class="eie-preloader">
+        <div class="eie-spin-ring"></div>
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: #00e599; font-family: monospace;">
+          EIE-TECHNOLOGY SECURE ACCESS
+        </div>
+        <div style="font-size: 11px; color: #7084a3;">Loading payment environment...</div>
+      </div>
+    </div>
+
+    <!-- Development entry point for Vite dev server -->
+
+    <!-- Static hosting fallback: If running on static host (GitHub Pages root) without Vite dev server -->
+    <script>
+      (function() {
+        var isLocalDev = window.location.port === '3000' || 
+                         window.location.hostname === 'localhost' || 
+                         window.location.hostname === '127.0.0.1';
+        if (!isLocalDev) {
+          function bootStaticProd() {
+            if (window.__eie_mounted) return;
+            var rootEl = document.getElementById('root');
+            if (rootEl && rootEl.querySelector('.eie-preloader')) {
+              var cssFile = "index-CxZ0-8wI.css";
+              var jsFile = "index-DQLUeMwh.js";
+              if (cssFile && cssFile.indexOf('__') === -1 && !document.querySelector('link[href*="' + cssFile + '"]')) {
+                var l = document.createElement('link');
+                l.rel = 'stylesheet';
+                l.crossOrigin = 'anonymous';
+                l.href = './assets/' + cssFile;
+                document.head.appendChild(l);
+              }
+              if (jsFile && jsFile.indexOf('__') === -1 && !document.querySelector('script[src*="' + jsFile + '"]')) {
+                var s = document.createElement('script');
+                s.type = 'module';
+                s.crossOrigin = 'anonymous';
+                s.src = './assets/' + jsFile;
+                document.body.appendChild(s);
+              }
+            }
+          }
+          window.addEventListener('error', function(e) {
+            if (e.filename && (e.filename.indexOf('.tsx') !== -1 || e.filename.indexOf('main.tsx') !== -1)) {
+              bootStaticProd();
+            }
+          }, true);
+          setTimeout(bootStaticProd, 400);
+        }
+      })();
+    </script>
+  </body>
+</html>

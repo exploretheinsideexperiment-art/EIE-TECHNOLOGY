@@ -1,0 +1,207 @@
+{
+  "resources": [
+    {
+      "id": "res_cyber_core_01",
+      "name": "Zero-Trust Infrastructure Blueprint",
+      "description": "Production Kubernetes zero-trust policies, mTLS configs, and hardened terraform modules.",
+      "originalUrl": "https://github.com/eie-secur/zero-trust-infra-core",
+      "category": "Cybersecurity",
+      "price": 199,
+      "currency": "INR",
+      "tokenValidityHours": 24,
+      "maxUses": 1,
+      "isEnabled": true,
+      "qrEnabled": true,
+      "emailEnabled": true,
+      "smsEnabled": true,
+      "whatsappEnabled": true,
+      "paymentGateway": "Razorpay",
+      "createdAt": "2026-09-18T10:45:07.753Z",
+      "updatedAt": "2026-09-19T10:45:07.753Z"
+    },
+    {
+      "id": "res_fintech_api_02",
+      "name": "High-Throughput Payment Engine SDK",
+      "description": "Distributed ledger payment routing service with automated reconciliation and idempotency.",
+      "originalUrl": "https://github.com/eie-secur/fintech-payment-engine",
+      "category": "Developer Tools",
+      "price": 499,
+      "currency": "INR",
+      "tokenValidityHours": 48,
+      "maxUses": 1,
+      "isEnabled": true,
+      "qrEnabled": true,
+      "emailEnabled": true,
+      "smsEnabled": true,
+      "whatsappEnabled": false,
+      "paymentGateway": "Razorpay",
+      "createdAt": "2026-09-18T10:45:07.753Z",
+      "updatedAt": "2026-09-18T10:45:07.753Z"
+    },
+    {
+      "id": "res_audit_playbook_03",
+      "name": "SOC2 & ISO-27001 Compliance Matrix",
+      "description": "Exhaustive audit-ready templates, risk assessment spreadsheets, and policy controls.",
+      "originalUrl": "https://github.com/eie-secur/compliance-framework-2026",
+      "category": "Compliance",
+      "price": 299,
+      "currency": "INR",
+      "tokenValidityHours": 12,
+      "maxUses": 1,
+      "isEnabled": true,
+      "qrEnabled": true,
+      "emailEnabled": true,
+      "smsEnabled": false,
+      "whatsappEnabled": true,
+      "paymentGateway": "Cashfree",
+      "createdAt": "2026-09-19T10:45:07.753Z",
+      "updatedAt": "2026-09-19T10:45:07.753Z"
+    }
+  ],
+  "paymentSessions": [
+    {
+      "resourceId": "res_cyber_core_01",
+      "resourceName": "Zero-Trust Infrastructure Blueprint",
+      "amount": 199,
+      "currency": "INR",
+      "customerName": "Test Customer",
+      "customerEmail": "test@eie.com",
+      "customerPhone": "",
+      "gateway": "UPI Direct Scanner",
+      "gatewayOrderId": "upi_scan_05c50e84b217",
+      "expiresAt": "2026-09-22T16:09:56.399Z",
+      "paymentMethod": "UPI",
+      "id": "sess_5015034dee8832de",
+      "status": "SUCCESS",
+      "createdAt": "2026-09-21T16:09:56.399Z",
+      "paidAt": "2026-09-21T16:09:56.400Z",
+      "gatewayPaymentId": "upi_utr_UTR99887766",
+      "accessTokenId": "tok_6b0f053a260b",
+      "protectedUrl": "http://localhost:3000/access/W0aTrii-uIHnXqz41PSlwQUybJgujgsTOh71OVqX4Eo"
+    }
+  ],
+  "accessTokens": [
+    {
+      "id": "tok_6b0f053a260b",
+      "tokenHash": "d35ca684b6f1891e07e8515cde34f6476cde4c719d45a56c4aae7ca89e52a665",
+      "rawTokenPrefix": "W0aTri...",
+      "resourceId": "res_cyber_core_01",
+      "resourceName": "Zero-Trust Infrastructure Blueprint",
+      "paymentId": "upi_utr_UTR99887766",
+      "sessionId": "sess_5015034dee8832de",
+      "customerEmail": "test@eie.com",
+      "createdAt": "2026-09-21T16:09:56.400Z",
+      "expiresAt": "2026-09-22T16:09:56.400Z",
+      "maxUses": 1,
+      "currentUses": 1,
+      "status": "USED",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "curl/7.88.1",
+      "boundDeviceType": "Mobile",
+      "boundUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+      "boundIpAddress": "127.0.0.1"
+    }
+  ],
+  "tokenUsages": [
+    {
+      "id": "use_fac40d087796",
+      "tokenId": "tok_6b0f053a260b",
+      "resourceId": "res_cyber_core_01",
+      "resourceName": "Zero-Trust Infrastructure Blueprint",
+      "accessedAt": "2026-09-21T16:10:04.994Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+      "status": "GRANTED",
+      "destinationDomain": "github.com"
+    }
+  ],
+  "customers": [
+    {
+      "id": "cust_2ce1912e53a3",
+      "name": "Test Customer",
+      "email": "test@eie.com",
+      "phone": "",
+      "totalPayments": 1,
+      "totalAmount": 199,
+      "currency": "INR",
+      "lastPaymentAt": "2026-09-21T16:09:56.401Z",
+      "activeTokensCount": 1,
+      "createdAt": "2026-09-21T16:09:56.401Z"
+    }
+  ],
+  "securityEvents": [
+    {
+      "type": "REPLAYED_TOKEN",
+      "severity": "MEDIUM",
+      "description": "Blocked replay attempt on already-used token W0aTri... for \"Zero-Trust Infrastructure Blueprint\". Access link is permanently disabled.",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "tokenId": "tok_6b0f053a260b",
+      "resourceId": "res_cyber_core_01",
+      "id": "sec_6a5171072d48",
+      "timestamp": "2026-09-21T16:10:08.551Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "aud_21ac5ce71ebe",
+      "action": "TOKEN_ACCESSED_GRANTED",
+      "actor": "Customer",
+      "details": "Authorized single-use token W0aTri... consumed. Performing server-side redirect for \"Zero-Trust Infrastructure Blueprint\". Remaining uses: 0",
+      "timestamp": "2026-09-21T16:10:04.994Z"
+    },
+    {
+      "id": "aud_6c3b36f49d1c",
+      "action": "ADMIN_PAYMENT_RECORDED",
+      "actor": "Admin",
+      "details": "Recorded direct payment: INR 199 for \"Zero-Trust Infrastructure Blueprint\" (UTR/Ref: upi_utr_UTR99887766)",
+      "timestamp": "2026-09-21T16:09:56.401Z"
+    },
+    {
+      "id": "aud_e4d44d0d3626",
+      "action": "TOKEN_ISSUED",
+      "actor": "System",
+      "details": "Issued single-use access token for resource \"Zero-Trust Infrastructure Blueprint\" to test@eie.com (Expires: 2026-09-22T16:09:56.400Z)",
+      "timestamp": "2026-09-21T16:09:56.400Z"
+    }
+  ],
+  "settings": {
+    "general": {
+      "appName": "EIE-Technology",
+      "subtitle": "Explore the Secur Payment",
+      "brandColor": "#00e599",
+      "supportEmail": "security@eie-technology.com",
+      "publicUrl": "https://ais-dev-awhawfoujkedemntbhnk4f-282770979432.asia-southeast1.run.app"
+    },
+    "gateways": {
+      "razorpayKeyId": "rzp_live_EIE9824Kx71",
+      "razorpaySecretMasked": "••••••••••••••••••••3a8F",
+      "razorpayWebhookSecretMasked": "••••••••••••••••••••92Km",
+      "cashfreeAppId": "CF_EIE_APP_77810",
+      "cashfreeSecretMasked": "••••••••••••••••••••66b9",
+      "defaultGateway": "Razorpay",
+      "testMode": false
+    },
+    "tokens": {
+      "defaultExpiryHours": 24,
+      "defaultMaxUses": 1,
+      "ipBinding": false,
+      "deviceBinding": false,
+      "replayProtection": true
+    },
+    "notifications": {
+      "emailSubject": "Verified Access: Your One-Time Security Link is Ready",
+      "emailTemplate": "Hello {{customer_name}},\n\nYour payment of {{currency}} {{amount}} for \"{{resource_name}}\" was successfully verified by EIE-Technology.\n\nYour Protected Access Link:\n{{protected_url}}\n\n* Note: This is a cryptographically secured one-time link. After first access, it deactivates automatically to prevent unauthorized redistribution.\n\nEIE-Technology - Explore the Secur Payment",
+      "smsTemplate": "EIE-Tech: Payment of {{currency}} {{amount}} verified for {{resource_name}}. Your single-use secure link: {{protected_url}}",
+      "whatsappTemplate": "🔒 *EIE-Technology Security Notice*\n\nPayment verified for *{{resource_name}}*.\nAmount: {{currency}} {{amount}}\n\nAccess Link: {{protected_url}}\n(Expires in 24 hours. Single-use only)"
+    },
+    "domain": {
+      "customDomain": "eie-technology.com",
+      "payDomain": "pay.eie-technology.com"
+    },
+    "pwa": {
+      "enableInstallPrompt": true,
+      "offlineCacheEnabled": true
+    }
+  }
+}
