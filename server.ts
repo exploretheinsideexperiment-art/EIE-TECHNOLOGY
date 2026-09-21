@@ -60,9 +60,10 @@ async function startServer() {
     if (!match) {
       return res.status(404).json({ valid: false, reason: 'TOKEN_NOT_FOUND' });
     }
+    const isExpired = Date.now() > new Date(match.expiresAt).getTime();
     return res.json({
-      valid: match.status === 'ACTIVE' && Date.now() <= new Date(match.expiresAt).getTime() && match.currentUses < match.maxUses,
-      status: match.status,
+      valid: match.status !== 'REVOKED' && !isExpired,
+      status: match.status === 'REVOKED' ? 'REVOKED' : isExpired ? 'EXPIRED' : 'ACTIVE',
       resourceName: match.resourceName,
       expiresAt: match.expiresAt,
       currentUses: match.currentUses,

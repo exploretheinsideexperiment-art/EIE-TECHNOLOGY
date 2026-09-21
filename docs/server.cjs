@@ -349,20 +349,6 @@ var Database = class {
       });
       return { success: false, reason: "EXPIRED", resourceName: resource.name, tokenRecord };
     }
-    if (tokenRecord.currentUses >= tokenRecord.maxUses || tokenRecord.status === "USED") {
-      tokenRecord.status = "USED";
-      this.saveData(this.data);
-      this.recordSecurityEvent({
-        type: "REPLAYED_TOKEN",
-        severity: "MEDIUM",
-        description: `Blocked replay attempt on already-used token ${tokenRecord.rawTokenPrefix} for "${resource.name}". Access link is permanently disabled.`,
-        ipAddress: meta.ipAddress,
-        userAgent: meta.userAgent,
-        tokenId: tokenRecord.id,
-        resourceId: resource.id
-      });
-      return { success: false, reason: "ALREADY_USED", resourceName: resource.name, tokenRecord };
-    }
     const originalUrl = resource.originalUrl.trim();
     if (!/^https?:\/\//i.test(originalUrl)) {
       this.recordSecurityEvent({
@@ -411,10 +397,8 @@ var Database = class {
       tokenRecord.boundUserAgent = meta.userAgent;
       tokenRecord.boundIpAddress = meta.ipAddress;
     }
-    tokenRecord.currentUses += 1;
-    if (tokenRecord.currentUses >= tokenRecord.maxUses) {
-      tokenRecord.status = "USED";
-    }
+    tokenRecord.currentUses = (tokenRecord.currentUses || 0) + 1;
+    tokenRecord.status = "ACTIVE";
     this.data.tokenUsages.unshift({
       id: `use_${import_crypto.default.randomBytes(6).toString("hex")}`,
       tokenId: tokenRecord.id,
@@ -465,6 +449,17 @@ var Database = class {
     return true;
   }
   getTokens() {
+    const now = Date.now();
+    let changed = false;
+    this.data.accessTokens.forEach((t) => {
+      if (t.status === "USED" && new Date(t.expiresAt).getTime() > now) {
+        t.status = "ACTIVE";
+        changed = true;
+      }
+    });
+    if (changed) {
+      this.saveData(this.data);
+    }
     return this.data.accessTokens;
   }
   getTokenUsages() {
@@ -665,9 +660,10 @@ async function startServer() {
     if (!match) {
       return res.status(404).json({ valid: false, reason: "TOKEN_NOT_FOUND" });
     }
+    const isExpired = Date.now() > new Date(match.expiresAt).getTime();
     return res.json({
-      valid: match.status === "ACTIVE" && Date.now() <= new Date(match.expiresAt).getTime() && match.currentUses < match.maxUses,
-      status: match.status,
+      valid: match.status !== "REVOKED" && !isExpired,
+      status: match.status === "REVOKED" ? "REVOKED" : isExpired ? "EXPIRED" : "ACTIVE",
       resourceName: match.resourceName,
       expiresAt: match.expiresAt,
       currentUses: match.currentUses,

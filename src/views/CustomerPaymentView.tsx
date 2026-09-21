@@ -948,11 +948,11 @@ export const CustomerPaymentView: React.FC<CustomerPaymentViewProps> = ({
                 </button>
               </div>
 
-              {/* Single-Use Replay Protection Status */}
+              {/* Token Validity & Protection Status */}
               <div className="p-3.5 rounded-xl bg-[#060a12] border border-[#162338] text-xs font-mono text-slate-400 space-y-1">
                 <div className="flex justify-between">
-                  <span>Replay Protection:</span>
-                  <span className="text-emerald-400 font-bold">ACTIVE (Single-Use Token)</span>
+                  <span>Access Validity:</span>
+                  <span className="text-emerald-400 font-bold">ACTIVE (वैधता रहने तक अनलिमिटेड ओपन)</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Destination Shielding:</span>

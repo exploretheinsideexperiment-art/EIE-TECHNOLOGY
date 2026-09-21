@@ -397,22 +397,6 @@ class Database {
       return { success: false, reason: 'EXPIRED', resourceName: resource.name, tokenRecord };
     }
 
-    // Check Usage Limit (Single-use enforcement)
-    if (tokenRecord.currentUses >= tokenRecord.maxUses || tokenRecord.status === 'USED') {
-      tokenRecord.status = 'USED';
-      this.saveData(this.data);
-      this.recordSecurityEvent({
-        type: 'REPLAYED_TOKEN',
-        severity: 'MEDIUM',
-        description: `Blocked replay attempt on already-used token ${tokenRecord.rawTokenPrefix} for "${resource.name}". Access link is permanently disabled.`,
-        ipAddress: meta.ipAddress,
-        userAgent: meta.userAgent,
-        tokenId: tokenRecord.id,
-        resourceId: resource.id,
-      });
-      return { success: false, reason: 'ALREADY_USED', resourceName: resource.name, tokenRecord };
-    }
-
     // Security Check: Destination URL validation (Strict Open-Redirect & SSRF Protection)
     const originalUrl = resource.originalUrl.trim();
     if (!/^https?:\/\//i.test(originalUrl)) {
@@ -472,11 +456,9 @@ class Database {
       tokenRecord.boundIpAddress = meta.ipAddress;
     }
 
-    // Atomic Consumption
-    tokenRecord.currentUses += 1;
-    if (tokenRecord.currentUses >= tokenRecord.maxUses) {
-      tokenRecord.status = 'USED';
-    }
+    // Valid Customer: Access counter tracking while keeping token ACTIVE throughout validity
+    tokenRecord.currentUses = (tokenRecord.currentUses || 0) + 1;
+    tokenRecord.status = 'ACTIVE';
 
     // Record Usage Audit
     this.data.tokenUsages.unshift({
@@ -537,6 +519,17 @@ class Database {
   }
 
   public getTokens(): AccessTokenRecord[] {
+    const now = Date.now();
+    let changed = false;
+    this.data.accessTokens.forEach((t) => {
+      if (t.status === 'USED' && new Date(t.expiresAt).getTime() > now) {
+        t.status = 'ACTIVE';
+        changed = true;
+      }
+    });
+    if (changed) {
+      this.saveData(this.data);
+    }
     return this.data.accessTokens;
   }
 

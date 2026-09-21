@@ -276,7 +276,20 @@ export const localFallback = {
   },
 
   getTokens(): AccessTokenRecord[] {
-    return this.getData().tokens;
+    const data = this.getData();
+    let changed = false;
+    const now = Date.now();
+    data.tokens.forEach((t) => {
+      // Auto-heal any tokens marked USED whose validity is still active
+      if (t.status === 'USED' && new Date(t.expiresAt).getTime() > now) {
+        t.status = 'ACTIVE';
+        changed = true;
+      }
+    });
+    if (changed) {
+      this.saveData(data);
+    }
+    return data.tokens;
   },
 
   revokeToken(id: string): boolean {
@@ -325,13 +338,12 @@ export const localFallback = {
     if (token.status === 'EXPIRED' || isExpired) {
       return { valid: false, status: 'EXPIRED', reason: 'EXPIRED', resourceName: token.resourceName };
     }
-    if (token.currentUses >= token.maxUses || token.status === 'USED') {
-      return { valid: false, status: 'USED', reason: 'ALREADY_USED', resourceName: token.resourceName };
-    }
+    
+    // Customer is valid and validity is active:
     const resource = data.resources.find((r) => r.id === token.resourceId);
     return {
       valid: true,
-      status: token.status,
+      status: 'ACTIVE',
       resourceName: token.resourceName,
       resource,
       expiresAt: token.expiresAt,
@@ -364,16 +376,11 @@ export const localFallback = {
       this.saveData(data);
       return { success: false, reason: 'EXPIRED', resourceName: token.resourceName, tokenRecord: token };
     }
-    if (token.currentUses >= token.maxUses || token.status === 'USED') {
-      token.status = 'USED';
-      this.saveData(data);
-      return { success: false, reason: 'ALREADY_USED', resourceName: token.resourceName, tokenRecord: token };
-    }
 
-    token.currentUses += 1;
-    if (token.currentUses >= token.maxUses) {
-      token.status = 'USED';
-    }
+    // Customer is valid and token validity is active:
+    // Keep status ACTIVE and increment access counter so portal continues to open smoothly
+    token.status = 'ACTIVE';
+    token.currentUses = (token.currentUses || 0) + 1;
     this.saveData(data);
 
     const resource = data.resources.find((r) => r.id === token.resourceId);

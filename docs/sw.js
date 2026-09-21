@@ -108,10 +108,10 @@ define(['./workbox-f0c192c2'], (function (workbox) { 'use strict';
     "url": "assets/manifest-DXHtpyqz.webmanifest",
     "revision": null
   }, {
-    "url": "assets/index-epxDe7G_.js",
+    "url": "assets/index-DWfYOrKN.css",
     "revision": null
   }, {
-    "url": "assets/index-DWfYOrKN.css",
+    "url": "assets/index-DL6tIy7H.js",
     "revision": null
   }, {
     "url": "assets/icon-CbCejJzc.svg",

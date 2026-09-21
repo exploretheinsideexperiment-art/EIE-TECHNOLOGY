@@ -410,11 +410,11 @@ export const ProtectedUsePortalView: React.FC<ProtectedUsePortalViewProps> = ({
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>
-              <strong>Verified Access:</strong> Aapka resource upar diye gaye secure player me bina kisi rukawat ke chal raha hai. Aapka set kiya hua link bilkul secret hai.
+              <strong>Valid Customer Access:</strong> Validity jab tak active hai, tab tak aap is portal ko bina kisi rukawat ke jitni baar chahein open aur use kar sakte hain.
             </span>
           </div>
           <div className="text-[11px] font-mono text-emerald-400/90 shrink-0">
-            Authenticated • Single-Use
+            {tokenRecord?.expiresAt ? `Valid Till: ${new Date(tokenRecord.expiresAt).toLocaleDateString()}` : 'Validity Active'} • Zero-Leak Verified
           </div>
         </div>
       )}
