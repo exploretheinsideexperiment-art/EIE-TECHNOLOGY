@@ -4,17 +4,16 @@ import { registerSW } from 'virtual:pwa-register';
 import App from './App.tsx';
 import './index.css';
 
-// Register PWA service worker in production
+// Register PWA service worker safely in production without forcing reload loops
 if (typeof window !== 'undefined' && 'serviceWorker' in navigator && import.meta.env.PROD) {
   try {
-    const updateSW = registerSW({
-      immediate: true,
+    registerSW({
+      immediate: false,
       onNeedRefresh() {
-        console.log('[PWA] New version ready, reloading to apply updates...');
-        updateSW(true);
+        console.log('[PWA] Update detected in background.');
       },
       onOfflineReady() {
-        console.log('[PWA] Service worker active and offline cache primed.');
+        console.log('[PWA] Service worker ready.');
       },
     });
   } catch (err) {

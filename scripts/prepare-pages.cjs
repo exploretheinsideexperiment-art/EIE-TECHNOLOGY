@@ -71,23 +71,43 @@ try {
       }
     }
 
-    // 6. Update root index.html with the compiled production assets for fallback
+    // 6. Update all index.html files (dist, docs, root, 404) with the compiled production assets
     try {
-      const rootIndexFile = path.join(rootDir, 'index.html');
-      if (fs.existsSync(rootIndexFile) && fs.existsSync(distAssets)) {
+      if (fs.existsSync(distAssets)) {
         const assetFiles = fs.readdirSync(distAssets);
         const jsBundle = assetFiles.find(f => f.startsWith('index-') && f.endsWith('.js'));
         const cssBundle = assetFiles.find(f => f.startsWith('index-') && f.endsWith('.css'));
         
         if (jsBundle && cssBundle) {
-          let htmlContent = fs.readFileSync(rootIndexFile, 'utf8');
-          htmlContent = htmlContent.replace(/var cssFile = "[^"]*";/, `var cssFile = "${cssBundle}";`);
-          htmlContent = htmlContent.replace(/var jsFile = "[^"]*";/, `var jsFile = "${jsBundle}";`);
-          fs.writeFileSync(rootIndexFile, htmlContent, 'utf8');
+          // Provide unversioned fallbacks index.js and index.css in assets
+          fs.copyFileSync(path.join(distAssets, jsBundle), path.join(distAssets, 'index.js'));
+          fs.copyFileSync(path.join(distAssets, cssBundle), path.join(distAssets, 'index.css'));
+          if (fs.existsSync(rootAssets)) {
+            fs.copyFileSync(path.join(distAssets, jsBundle), path.join(rootAssets, 'index.js'));
+            fs.copyFileSync(path.join(distAssets, cssBundle), path.join(rootAssets, 'index.css'));
+          }
+
+          const targetHtmlFiles = [
+            path.join(rootDir, 'index.html'),
+            path.join(distDir, 'index.html'),
+            path.join(distDir, '404.html'),
+            path.join(docsDir, 'index.html'),
+            path.join(docsDir, '404.html'),
+            path.join(rootDir, '404.html'),
+          ];
+
+          for (const htmlFile of targetHtmlFiles) {
+            if (fs.existsSync(htmlFile)) {
+              let htmlContent = fs.readFileSync(htmlFile, 'utf8');
+              htmlContent = htmlContent.replace(/var cssFile = "[^"]*";/, `var cssFile = "${cssBundle}";`);
+              htmlContent = htmlContent.replace(/var jsFile = "[^"]*";/, `var jsFile = "${jsBundle}";`);
+              fs.writeFileSync(htmlFile, htmlContent, 'utf8');
+            }
+          }
         }
       }
     } catch (e) {
-      console.warn('Could not inject bundle hash to root index.html:', e.message);
+      console.warn('Could not inject bundle hash to html files:', e.message);
     }
 
     console.log('✓ Successfully prepared GitHub Pages static build:');
