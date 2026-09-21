@@ -234,7 +234,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ settings: initialSet
                 required
                 value={accountNumber}
                 onChange={(e) => setAccountNumber(e.target.value)}
-                placeholder="e.g. 987654321012"
+                placeholder=""
                 className="w-full px-3.5 py-2.5 rounded-xl bg-[#070b14] border border-[#1b2b42] text-sm font-mono text-emerald-300 font-bold focus:outline-none focus:border-emerald-400"
               />
               <span className="text-[11px] text-slate-400 mt-1 block">
@@ -251,7 +251,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ settings: initialSet
                 required
                 value={accountHolderName}
                 onChange={(e) => setAccountHolderName(e.target.value)}
-                placeholder="e.g. Rahul Sharma / Business Name"
+                placeholder=""
                 className="w-full px-3.5 py-2.5 rounded-xl bg-[#070b14] border border-[#1b2b42] text-sm text-white focus:outline-none focus:border-emerald-400"
               />
               <span className="text-[11px] text-slate-400 mt-1 block">
@@ -267,7 +267,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ settings: initialSet
                 type="text"
                 value={bankName}
                 onChange={(e) => setBankName(e.target.value)}
-                placeholder="e.g. State Bank of India, HDFC Bank, ICICI Bank"
+                placeholder=""
                 className="w-full px-3.5 py-2.5 rounded-xl bg-[#070b14] border border-[#1b2b42] text-sm text-white focus:outline-none focus:border-emerald-400"
               />
             </div>
@@ -280,7 +280,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ settings: initialSet
                 type="text"
                 value={ifscCode}
                 onChange={(e) => setIfscCode(e.target.value)}
-                placeholder="e.g. SBIN0001234"
+                placeholder=""
                 className="w-full px-3.5 py-2.5 rounded-xl bg-[#070b14] border border-[#1b2b42] text-sm font-mono uppercase text-white focus:outline-none focus:border-emerald-400"
               />
             </div>
@@ -308,7 +308,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ settings: initialSet
                 required
                 value={upiId}
                 onChange={(e) => setUpiId(e.target.value)}
-                placeholder="e.g. yourname@okaxis, 9876543210@paytm"
+                placeholder=""
                 className="w-full px-3.5 py-2.5 rounded-xl bg-[#070b14] border border-[#1b2b42] text-sm font-mono text-emerald-400 font-bold focus:outline-none focus:border-emerald-400"
               />
               <span className="text-[11px] text-slate-400 mt-1 block">

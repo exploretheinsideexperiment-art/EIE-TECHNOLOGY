@@ -603,7 +603,7 @@ export const ResourceModal: React.FC<ResourceModalProps> = ({
                     type="text"
                     value={customAccountNumber}
                     onChange={(e) => setCustomAccountNumber(e.target.value)}
-                    placeholder="e.g. 987654321012"
+                    placeholder=""
                     className="w-full px-3 py-1.5 rounded-lg bg-[#060a12] border border-[#1b2b42] text-xs font-mono text-white focus:outline-none focus:border-emerald-400"
                   />
                 </div>
@@ -616,7 +616,7 @@ export const ResourceModal: React.FC<ResourceModalProps> = ({
                     type="text"
                     value={customAccountName}
                     onChange={(e) => setCustomAccountName(e.target.value)}
-                    placeholder="e.g. Rahul Sharma / Merchant Name"
+                    placeholder=""
                     className="w-full px-3 py-1.5 rounded-lg bg-[#060a12] border border-[#1b2b42] text-xs text-white focus:outline-none focus:border-emerald-400"
                   />
                 </div>
@@ -629,7 +629,7 @@ export const ResourceModal: React.FC<ResourceModalProps> = ({
                     type="text"
                     value={customBankName}
                     onChange={(e) => setCustomBankName(e.target.value)}
-                    placeholder="e.g. State Bank of India, HDFC"
+                    placeholder=""
                     className="w-full px-3 py-1.5 rounded-lg bg-[#060a12] border border-[#1b2b42] text-xs text-white focus:outline-none focus:border-emerald-400"
                   />
                 </div>
@@ -642,7 +642,7 @@ export const ResourceModal: React.FC<ResourceModalProps> = ({
                     type="text"
                     value={customIfscCode}
                     onChange={(e) => setCustomIfscCode(e.target.value)}
-                    placeholder="e.g. SBIN0001234"
+                    placeholder=""
                     className="w-full px-3 py-1.5 rounded-lg bg-[#060a12] border border-[#1b2b42] text-xs font-mono uppercase text-white focus:outline-none focus:border-emerald-400"
                   />
                 </div>
@@ -655,7 +655,7 @@ export const ResourceModal: React.FC<ResourceModalProps> = ({
                     type="text"
                     value={customUpiId}
                     onChange={(e) => setCustomUpiId(e.target.value)}
-                    placeholder="e.g. yourname@okaxis, 9876543210@paytm"
+                    placeholder=""
                     className="w-full px-3 py-1.5 rounded-lg bg-[#060a12] border border-[#1b2b42] text-xs font-mono text-emerald-400 focus:outline-none focus:border-emerald-400"
                   />
                   <span className="text-[10px] text-slate-400 mt-1 block">
