@@ -9,16 +9,6 @@
     <meta property="og:description" content="Explore the Inside Experiment-Technology (Created by Vipul) - Production-ready payment and protected digital-link delivery platform with one-time token security." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    
-    <!-- Normalize GitHub Pages path with trailing slash so relative assets always resolve correctly -->
-    <script>
-      (function() {
-        var path = window.location.pathname;
-        if (path && !path.endsWith('/') && !path.split('/').pop().includes('.')) {
-          window.location.replace(path + '/' + window.location.search + window.location.hash);
-        }
-      })();
-    </script>
 
     <!-- Prevent Stale HTML Caching -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
@@ -37,7 +27,7 @@
     <link rel="manifest" href="./assets/manifest-DXHtpyqz.webmanifest" />
 
     <style>html,body{color:#e1e7f5;width:100%;min-height:100vh;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background-color:#090d16!important}.eie-preloader{background-color:#090d16;flex-direction:column;justify-content:center;align-items:center;gap:16px;width:100vw;height:100vh;display:flex}.eie-spin-ring{border:3px solid #00e59933;border-top-color:#00e599;border-radius:50%;width:44px;height:44px;animation:.8s linear infinite eie-spin}@keyframes eie-spin{to{transform:rotate(360deg)}}</style>
-    <script type="module" crossorigin src="./assets/index-UU8SfIDZ.js"></script>
+    <script type="module" crossorigin src="./assets/index-epxDe7G_.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DWfYOrKN.css">
   <link rel="manifest" href="./manifest.webmanifest"></head>
   <body class="bg-[#090d16] text-[#e1e7f5] antialiased selection:bg-[#00e599]/30 selection:text-white" style="background-color: #090d16; color: #e1e7f5;">
@@ -55,70 +45,34 @@
 
     <!-- Development entry point for Vite dev server -->
 
-    <!-- Static hosting recovery watchdog and GitHub Pages root fallback -->
+    <!-- Static hosting fallback: for GitHub Pages if served from repository root -->
     <script>
       (function() {
         var isLocalDev = window.location.port === '3000' || 
                          window.location.hostname === 'localhost' || 
                          window.location.hostname === '127.0.0.1';
-
-        // Watchdog: If preloader persists for > 3.5s due to stale browser cache or unmounted state
-        setTimeout(function() {
-          if (window.__eie_mounted) return;
-          var msgEl = document.getElementById('eie-preload-msg');
-          if (msgEl) {
-            msgEl.innerHTML = '<span style="color:#38bdf8;font-size:12px;font-weight:600;">Updating app cache...</span><br>' +
-              '<button id="eie-refresh-btn" onclick="window.__eie_refresh_fresh()" style="margin-top:12px;padding:9px 18px;background:#00e599;color:#070b13;border:none;border-radius:10px;font-weight:700;font-size:12px;cursor:pointer;box-shadow:0 4px 14px rgba(0,229,153,0.35);">' +
-              'Tap to Load App / नया वर्ज़न खोलें ↻' +
-              '</button>';
-          }
-        }, 3500);
-
-        window.__eie_refresh_fresh = function() {
-          if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(function(regs) {
-              for (var i = 0; i < regs.length; i++) regs[i].unregister();
-            });
-          }
-          if (window.caches) {
-            caches.keys().then(function(names) {
-              for (var i = 0; i < names.length; i++) caches.delete(names[i]);
-            });
-          }
-          var sep = window.location.href.indexOf('?') === -1 ? '?' : '&';
-          window.location.href = window.location.href.split('#')[0] + sep + '_fresh=' + Date.now();
-        };
-
         if (!isLocalDev) {
-          function bootStaticProd() {
-            // If already mounted or Vite's script is present, do nothing
-            if (window.__eie_mounted || document.querySelector('script[src*="assets/index-"]')) return;
+          function bootStaticFallback() {
+            if (window.__eie_mounted || document.querySelector('script[src*="assets/"]')) return;
             var rootEl = document.getElementById('root');
             if (rootEl && rootEl.querySelector('.eie-preloader')) {
-              var cssFile = "index-DWfYOrKN.css";
-              var jsFile = "index-UU8SfIDZ.js";
-              if (cssFile && cssFile.indexOf('__') === -1 && !document.querySelector('link[href*="' + cssFile + '"]')) {
-                var l = document.createElement('link');
-                l.rel = 'stylesheet';
-                l.crossOrigin = 'anonymous';
-                l.href = './assets/' + cssFile;
-                document.head.appendChild(l);
-              }
-              if (jsFile && jsFile.indexOf('__') === -1 && !document.querySelector('script[src*="' + jsFile + '"]')) {
-                var s = document.createElement('script');
-                s.type = 'module';
-                s.crossOrigin = 'anonymous';
-                s.src = './assets/' + jsFile;
-                document.body.appendChild(s);
-              }
+              var l = document.createElement('link');
+              l.rel = 'stylesheet';
+              l.href = './assets/index.css';
+              document.head.appendChild(l);
+
+              var s = document.createElement('script');
+              s.type = 'module';
+              s.src = './assets/index.js';
+              document.body.appendChild(s);
             }
           }
           window.addEventListener('error', function(e) {
             if (e.filename && (e.filename.indexOf('.tsx') !== -1 || e.filename.indexOf('main.tsx') !== -1)) {
-              bootStaticProd();
+              bootStaticFallback();
             }
           }, true);
-          setTimeout(bootStaticProd, 500);
+          setTimeout(bootStaticFallback, 300);
         }
       })();
     </script>

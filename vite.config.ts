@@ -15,7 +15,7 @@ export default defineConfig(() => {
       react(),
       tailwindcss(),
       VitePWA({
-        registerType: 'autoUpdate',
+        registerType: 'prompt',
         includeAssets: [
           'favicon.ico',
           'apple-touch-icon.png',
@@ -59,23 +59,10 @@ export default defineConfig(() => {
         },
         workbox: {
           globPatterns: ['**/*.{js,css,ico,png,svg,woff,woff2,webmanifest}'],
-          navigateFallback: './index.html',
+          globIgnores: ['**/index.html'],
           cleanupOutdatedCaches: true,
-          skipWaiting: true,
-          clientsClaim: true,
-          runtimeCaching: [
-            {
-              urlPattern: ({ request }) => request.mode === 'navigate',
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: 'eie-html-cache',
-                networkTimeoutSeconds: 3,
-                cacheableResponse: {
-                  statuses: [0, 200],
-                },
-              },
-            },
-          ],
+          skipWaiting: false,
+          clientsClaim: false,
         },
         injectRegister: null,
         devOptions: {
